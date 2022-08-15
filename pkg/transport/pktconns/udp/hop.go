@@ -8,6 +8,7 @@ import (
 	"sync"
 	"time"
 
+	"github.com/HyNetwork/hysteria/pkg/ssprotect"
 	"github.com/HyNetwork/hysteria/pkg/transport/pktconns/obfs"
 )
 
@@ -88,6 +89,7 @@ func NewObfsUDPHopClientPacketConn(server string, hopInterval time.Duration, obf
 	if err != nil {
 		return nil, nil, err
 	}
+	_ = ssprotect.Protect(curConn, "protect_path")
 	if obfs != nil {
 		conn.currentConn = NewObfsUDPConn(curConn, obfs)
 	} else {
@@ -138,6 +140,7 @@ func (c *ObfsUDPHopClientPacketConn) hop() {
 		// Skip this hop if failed to listen
 		return
 	}
+	_ = ssprotect.Protect(newConn, "protect_path")
 	// Close prevConn,
 	// prevConn <- currentConn
 	// currentConn <- newConn
