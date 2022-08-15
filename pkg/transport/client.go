@@ -11,6 +11,7 @@ import (
 	"github.com/tobyxdd/hysteria/pkg/conns/udp"
 	"github.com/tobyxdd/hysteria/pkg/conns/wechat"
 	"github.com/tobyxdd/hysteria/pkg/obfs"
+	"github.com/tobyxdd/hysteria/pkg/ssprotect"
 )
 
 type ClientTransport struct {
@@ -31,6 +32,9 @@ func (ct *ClientTransport) quicPacketConn(proto string, server string, obfs obfs
 		if err != nil {
 			return nil, err
 		}
+		//
+		_ = ssprotect.Protect(conn, "protect_path")
+		//
 		if obfs != nil {
 			oc := udp.NewObfsUDPConn(conn, obfs)
 			return oc, nil
@@ -42,6 +46,9 @@ func (ct *ClientTransport) quicPacketConn(proto string, server string, obfs obfs
 		if err != nil {
 			return nil, err
 		}
+		//
+		_ = ssprotect.Protect(conn, "protect_path")
+		//
 		if obfs != nil {
 			oc := wechat.NewObfsWeChatUDPConn(conn, obfs)
 			return oc, nil
