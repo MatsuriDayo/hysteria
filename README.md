@@ -1,3 +1,5 @@
+**For Matsuri plugin build. Use MIT License. No TUN support.**
+
 # ![Logo](docs/logos/readme.png)
 
 [![License][1]][2] [![Release][3]][4] [![Telegram][5]][6] [![Discussions][7]][8]
