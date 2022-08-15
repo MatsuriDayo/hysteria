@@ -3,6 +3,7 @@ package pktconns
 import (
 	"net"
 
+	"github.com/HyNetwork/hysteria/pkg/ssprotect"
 	"github.com/HyNetwork/hysteria/pkg/transport/pktconns/faketcp"
 	"github.com/HyNetwork/hysteria/pkg/transport/pktconns/obfs"
 	"github.com/HyNetwork/hysteria/pkg/transport/pktconns/udp"
@@ -22,7 +23,9 @@ type (
 func NewClientUDPConnFunc(obfsPassword string) ClientPacketConnFunc {
 	if obfsPassword == "" {
 		return func(server string) (net.PacketConn, error) {
-			return net.ListenUDP("udp", nil)
+			udpConn, err := net.ListenUDP("udp", nil)
+			_ = ssprotect.Protect(udpConn, "protect_path")
+			return udpConn, err
 		}
 	} else {
 		return func(server string) (net.PacketConn, error) {
@@ -31,6 +34,7 @@ func NewClientUDPConnFunc(obfsPassword string) ClientPacketConnFunc {
 			if err != nil {
 				return nil, err
 			}
+			_ = ssprotect.Protect(udpConn, "protect_path")
 			return udp.NewObfsUDPConn(udpConn, ob), nil
 		}
 	}
@@ -43,6 +47,7 @@ func NewClientWeChatConnFunc(obfsPassword string) ClientPacketConnFunc {
 			if err != nil {
 				return nil, err
 			}
+			_ = ssprotect.Protect(udpConn, "protect_path")
 			return wechat.NewObfsWeChatUDPConn(udpConn, nil), nil
 		}
 	} else {
@@ -52,6 +57,7 @@ func NewClientWeChatConnFunc(obfsPassword string) ClientPacketConnFunc {
 			if err != nil {
 				return nil, err
 			}
+			_ = ssprotect.Protect(udpConn, "protect_path")
 			return wechat.NewObfsWeChatUDPConn(udpConn, ob), nil
 		}
 	}
