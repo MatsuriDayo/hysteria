@@ -30,7 +30,6 @@ jobs:
         uses: tobyxdd/go-cross-build@d00fc41eb205f57dd90f6e5af4613e21c7ebe73f
         env:
           TIME: "${{ steps.current-time.outputs.time }}"
-          GOFLAGS: "-tags=gpl"
           CGO_ENABLED: "0"
         with:
           name: hysteria
