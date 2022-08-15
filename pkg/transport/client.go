@@ -10,6 +10,7 @@ import (
 	"github.com/HyNetwork/hysteria/pkg/conns/udp"
 	"github.com/HyNetwork/hysteria/pkg/conns/wechat"
 	obfsPkg "github.com/HyNetwork/hysteria/pkg/obfs"
+	"github.com/HyNetwork/hysteria/pkg/ssprotect"
 	"github.com/lucas-clemente/quic-go"
 )
 
@@ -31,6 +32,9 @@ func (ct *ClientTransport) quicPacketConn(proto string, server string, obfs obfs
 		if err != nil {
 			return nil, err
 		}
+		//
+		_ = ssprotect.Protect(conn, "protect_path")
+		//
 		if obfs != nil {
 			oc := udp.NewObfsUDPConn(conn, obfs)
 			return oc, nil
@@ -39,6 +43,9 @@ func (ct *ClientTransport) quicPacketConn(proto string, server string, obfs obfs
 		}
 	} else if proto == "wechat-video" {
 		conn, err := net.ListenUDP("udp", nil)
+		//
+		_ = ssprotect.Protect(conn, "protect_path")
+		//
 		if err != nil {
 			return nil, err
 		}
