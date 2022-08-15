@@ -30,13 +30,12 @@ jobs:
         uses: tobyxdd/go-cross-build@d00fc41eb205f57dd90f6e5af4613e21c7ebe73f
         env:
           TIME: "${{ steps.current-time.outputs.time }}"
-          GOFLAGS: "-tags=gpl"
           CGO_ENABLED: "0"
         with:
           name: hysteria
           dest: dist
           ldflags: -w -s -X main.appVersion=${{ env.GIT_TAG_NAME }} -X main.appCommit=${{ github.sha }} -X main.appDate=${{ env.TIME }}
-          platforms: 'darwin/amd64, darwin/arm64, windows/amd64, windows/386, linux/amd64, linux/386, linux/arm, linux/arm64, linux/s390x, linux/mipsle, freebsd/amd64, freebsd/386, freebsd/arm, freebsd/arm64'
+          platforms: 'linux/amd64, linux/386, linux/arm, linux/arm64'
           package: cmd
           compress: false
 
@@ -52,18 +51,8 @@ jobs:
         if: startsWith(github.ref, 'refs/tags/')
         with:
           files: |
-            ./dist/hysteria-darwin-amd64
-            ./dist/hysteria-darwin-arm64
-            ./dist/hysteria-windows-amd64.exe
-            ./dist/hysteria-windows-386.exe
             ./dist/hysteria-linux-amd64
             ./dist/hysteria-linux-386
             ./dist/hysteria-linux-arm
             ./dist/hysteria-linux-arm64
-            ./dist/hysteria-linux-s390x
-            ./dist/hysteria-linux-mipsle
-            ./dist/hysteria-freebsd-amd64
-            ./dist/hysteria-freebsd-386
-            ./dist/hysteria-freebsd-arm
-            ./dist/hysteria-freebsd-arm64
             ./dist/hashes.txt
