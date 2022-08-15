@@ -9,6 +9,7 @@ import (
 	"github.com/apernet/hysteria/core/pktconns/obfs"
 	"github.com/apernet/hysteria/core/pktconns/udp"
 	"github.com/apernet/hysteria/core/pktconns/wechat"
+	"github.com/apernet/hysteria/core/ssprotect"
 )
 
 type (
@@ -32,6 +33,7 @@ func NewClientUDPConnFunc(obfsPassword string, hopInterval time.Duration) Client
 				return nil, nil, err
 			}
 			udpConn, err := net.ListenUDP("udp", nil)
+			_ = ssprotect.Protect(udpConn, "protect_path")
 			return udpConn, sAddr, err
 		}
 	} else {
@@ -48,6 +50,7 @@ func NewClientUDPConnFunc(obfsPassword string, hopInterval time.Duration) Client
 			if err != nil {
 				return nil, nil, err
 			}
+			_ = ssprotect.Protect(udpConn, "protect_path")
 			ob := obfs.NewXPlusObfuscator([]byte(obfsPassword))
 			return udp.NewObfsUDPConn(udpConn, ob), sAddr, nil
 		}
@@ -65,6 +68,7 @@ func NewClientWeChatConnFunc(obfsPassword string, hopInterval time.Duration) Cli
 			if err != nil {
 				return nil, nil, err
 			}
+			_ = ssprotect.Protect(udpConn, "protect_path")
 			return wechat.NewObfsWeChatUDPConn(udpConn, nil), sAddr, nil
 		}
 	} else {
@@ -77,6 +81,7 @@ func NewClientWeChatConnFunc(obfsPassword string, hopInterval time.Duration) Cli
 			if err != nil {
 				return nil, nil, err
 			}
+			_ = ssprotect.Protect(udpConn, "protect_path")
 			ob := obfs.NewXPlusObfuscator([]byte(obfsPassword))
 			return wechat.NewObfsWeChatUDPConn(udpConn, ob), sAddr, nil
 		}
