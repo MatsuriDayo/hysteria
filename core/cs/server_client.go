@@ -87,7 +87,7 @@ func (c *serverClient) Run() error {
 			c.TrafficCounter.IncConn(c.AuthLabel)
 		}
 		go func() {
-			stream := &qStream{stream}
+			stream := &qStream{false, stream}
 			c.handleStream(stream)
 			_ = stream.Close()
 			if c.TrafficCounter != nil {
