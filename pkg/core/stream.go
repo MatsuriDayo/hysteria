@@ -13,7 +13,8 @@ import (
 // after the stream is supposedly "closed".
 // Ref: https://github.com/libp2p/go-libp2p/blob/master/p2p/transport/quic/stream.go
 type qStream struct {
-	Stream quic.Stream
+	isClient bool
+	Stream   quic.Stream
 }
 
 func (s *qStream) StreamID() quic.StreamID {
@@ -37,6 +38,9 @@ func (s *qStream) Write(p []byte) (n int, err error) {
 }
 
 func (s *qStream) Close() error {
+	if s.isClient {
+		s.Stream.CancelWrite(0)
+	}
 	s.Stream.CancelRead(0)
 	return s.Stream.Close()
 }
