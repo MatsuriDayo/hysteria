@@ -182,7 +182,7 @@ func (c *Client) openStreamWithReconnect() (quic.Connection, quic.Stream, error)
 	stream, err := c.quicConn.OpenStream()
 	if err == nil {
 		// All good
-		return c.quicConn, &qStream{stream}, nil
+		return c.quicConn, &qStream{true, stream}, nil
 	}
 	// Something is wrong
 	if nErr, ok := err.(net.Error); ok && nErr.Temporary() {
@@ -197,7 +197,7 @@ func (c *Client) openStreamWithReconnect() (quic.Connection, quic.Stream, error)
 	}
 	// We are not going to try again even if it still fails the second time
 	stream, err = c.quicConn.OpenStream()
-	return c.quicConn, &qStream{stream}, err
+	return c.quicConn, &qStream{true, stream}, err
 }
 
 func (c *Client) DialTCP(addr string) (net.Conn, error) {
