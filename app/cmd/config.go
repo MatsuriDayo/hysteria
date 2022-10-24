@@ -24,7 +24,7 @@ const (
 	DefaultMMDBFilename = "GeoLite2-Country.mmdb"
 
 	ServerMaxIdleTimeoutSec     = 60
-	DefaultClientIdleTimeoutSec = 20
+	DefaultClientIdleTimeoutSec = 10
 
 	DefaultClientHopIntervalSec = 10
 )
