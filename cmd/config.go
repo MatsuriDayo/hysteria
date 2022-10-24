@@ -24,8 +24,8 @@ const (
 	DefaultMMDBFilename = "GeoLite2-Country.mmdb"
 
 	ServerMaxIdleTimeout         = 60 * time.Second
-	DefaultClientMaxIdleTimeout  = 20 * time.Second
-	DefaultClientKeepAlivePeriod = 8 * time.Second
+	DefaultClientMaxIdleTimeout  = 5 * time.Second
+	DefaultClientKeepAlivePeriod = 2 * time.Second
 )
 
 var rateStringRegexp = regexp.MustCompile(`^(\d+)\s*([KMGT]?)([Bb])ps$`)
