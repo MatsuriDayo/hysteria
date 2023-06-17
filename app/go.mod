@@ -1,6 +1,6 @@
 module github.com/apernet/hysteria/app
 
-go 1.18
+go 1.20
 
 require (
 	github.com/LiamHaworth/go-tproxy v0.0.0-20190726054950-ef7efd7f24ed
@@ -14,15 +14,15 @@ require (
 	github.com/fsnotify/fsnotify v1.6.0
 	github.com/oschwald/geoip2-golang v1.8.0
 	github.com/prometheus/client_golang v1.14.0
-	github.com/quic-go/quic-go v0.33.0
+	github.com/quic-go/quic-go v0.34.0
 	github.com/sirupsen/logrus v1.9.0
 	github.com/spf13/cobra v1.6.1
 	github.com/spf13/viper v1.15.0
 	github.com/txthinking/socks5 v0.0.0-20220212043548-414499347d4a
-	github.com/xjasonlyu/tun2socks/v2 v2.4.2-0.20230122052711-6809e7f83541
+	github.com/xjasonlyu/tun2socks/v2 v2.5.0
 	github.com/yosuke-furukawa/json5 v0.1.1
 	go.uber.org/zap v1.23.0
-	gvisor.dev/gvisor v0.0.0-20230313184804-9bf6dd27710d
+	gvisor.dev/gvisor v0.0.0-20230401011607-0333bf067633
 )
 
 require (
@@ -61,8 +61,8 @@ require (
 	github.com/prometheus/common v0.37.0 // indirect
 	github.com/prometheus/procfs v0.8.0 // indirect
 	github.com/quic-go/qpack v0.4.0 // indirect
-	github.com/quic-go/qtls-go1-19 v0.2.1 // indirect
-	github.com/quic-go/qtls-go1-20 v0.1.1 // indirect
+	github.com/quic-go/qtls-go1-19 v0.3.2 // indirect
+	github.com/quic-go/qtls-go1-20 v0.2.2 // indirect
 	github.com/rogpeppe/go-internal v1.9.0 // indirect
 	github.com/spf13/afero v1.9.3 // indirect
 	github.com/spf13/cast v1.5.0 // indirect
@@ -73,16 +73,16 @@ require (
 	github.com/txthinking/x v0.0.0-20210326105829-476fab902fbe // indirect
 	go.uber.org/atomic v1.10.0 // indirect
 	go.uber.org/multierr v1.8.0 // indirect
-	golang.org/x/crypto v0.5.0 // indirect
+	golang.org/x/crypto v0.7.0 // indirect
 	golang.org/x/exp v0.0.0-20230131160201-f062dba9d201 // indirect
-	golang.org/x/mod v0.7.0 // indirect
-	golang.org/x/net v0.7.0 // indirect
-	golang.org/x/sys v0.5.0 // indirect
-	golang.org/x/text v0.7.0 // indirect
+	golang.org/x/mod v0.8.0 // indirect
+	golang.org/x/net v0.8.0 // indirect
+	golang.org/x/sys v0.7.0 // indirect
+	golang.org/x/text v0.8.0 // indirect
 	golang.org/x/time v0.3.0 // indirect
-	golang.org/x/tools v0.5.0 // indirect
-	golang.zx2c4.com/wintun v0.0.0-20211104114900-415007cec224 // indirect
-	golang.zx2c4.com/wireguard v0.0.0-20220920152132-bb719d3a6e2c // indirect
+	golang.org/x/tools v0.6.0 // indirect
+	golang.zx2c4.com/wintun v0.0.0-20230126152724-0fa3db229ce2 // indirect
+	golang.zx2c4.com/wireguard v0.0.0-20230325221338-052af4a8072b // indirect
 	google.golang.org/protobuf v1.28.2-0.20230118093459-a9481185b34d // indirect
 	gopkg.in/ini.v1 v1.67.0 // indirect
 	gopkg.in/yaml.v3 v3.0.1 // indirect
@@ -90,7 +90,7 @@ require (
 
 replace github.com/apernet/hysteria/core => ../core/
 
-replace github.com/quic-go/quic-go => github.com/apernet/quic-go v0.32.1-0.20230226201325-e07aae1a800b
+replace github.com/quic-go/quic-go => github.com/apernet/quic-go v0.34.1-0.20230507231629-ec008b7e8473
 
 replace github.com/LiamHaworth/go-tproxy => github.com/apernet/go-tproxy v0.0.0-20221025153553-ed04a2935f88
 
